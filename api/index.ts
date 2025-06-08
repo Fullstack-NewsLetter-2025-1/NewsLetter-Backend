@@ -1,20 +1,8 @@
-import express, { Application } from "express";
-import cors from "cors";
-import dotenv from "dotenv";
-import { connectDB } from "../src/config/db";
-import UsersRouters from "../src/routes/UsersRoutes";
-import AuthRoutes from "../src/routes/AuthRoutes";
-
-
-dotenv.config();
-const app: Application = express();
-
-app.use(cors());
-app.use(express.json());
+import app from './app';
+import { connectDB } from '../src/config/db';
 
 connectDB();
 
-app.use("/users", UsersRouters);
-app.use("/auth", AuthRoutes);
-
-app.listen(process.env.PORT);
+app.listen(process.env.PORT, () => {
+  console.log(`Servidor rodando na porta ${process.env.PORT}`);
+});
